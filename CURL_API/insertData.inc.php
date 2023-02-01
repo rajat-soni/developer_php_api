@@ -1,25 +1,28 @@
 <?php 
 
-
-if(($_POST)) {
+include 'connection.inc.php';
+if(!empty($_POST)) {
 
     $name = $_POST['name'];
     $mobile = $_POST['mobile'];
     $email = $_POST['email'];
 
-    $url = 'http://localhost:3000/postApiData.inc.php';
+    $url = "http://localhost:3000/postApiData.php";
+   
 
     $data  = json_encode(array(
         'name' => $name,
         'mobile' => $mobile,
         'email' => $email
-    )) ;
+    ));
 
-   
+    //print_r($data); 
+    
     $curl = curl_init();
 
     // set our url with curl_setopt()
-    curl_setopt($curl, CURLOPT_CUSTOMREQUEST, 'POST');
+     //curl_setopt($curl, CURLOPT_URL, $url);
+    curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "POST");
     
     // return the transfer as a string, also with setopt()
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
@@ -29,7 +32,8 @@ if(($_POST)) {
     // curl_exec() executes the started curl session
     // $output contains the output string
     $result = curl_exec($curl);
-    echo $result; 
+    echo $result;  
+    // echo  " wwwww".$result; 
     // close curl resource to free up system resources
     // (deletes the variable made by curl_init)
     curl_close($curl);
