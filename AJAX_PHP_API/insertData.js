@@ -1,3 +1,5 @@
+
+
 function insertUser(){
  
     var name = $('#name').val();
@@ -34,6 +36,7 @@ function insertUser(){
                 if(resut.status == 200){
 
                     window.location.href = "http://127.0.0.1:5500/home.html";
+
                     
                 }else{
 

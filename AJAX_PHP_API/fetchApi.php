@@ -1,9 +1,7 @@
 <?php  
 
 include 'connection.inc.php';
-// header("Access-Control-Allow-Origin: *");
-// header("Access-Control-Allow-Methods: POST");
- header('Content-Type: application/json');
+ header('Content-Type: application/json'); 
  header('Access-Control-Allow-Origin: *');
  header('Access-Control-Allow-Method: GET');
  header('Access-Control-Allow-Headers: Access-Control-Allow-headers,Content-Type,Access-Control-Allow-Method,Authorization, X-Request-with');
@@ -11,40 +9,23 @@ include 'connection.inc.php';
 
  
   
-    $sql = "SELECT * FROM `add_user`";
+$sql = "SELECT * FROM `add_user`"; // select query //
 
-    $result = $conn->query($sql);
-  $arr = array();
-if ($result->num_rows > 0) {
- 
-  while($row = $result->fetch_assoc()) {
-     $arr = $row;
-  }
+$result = $conn->query($sql);
+$arr = array();
+    if ($result->num_rows > 0) {
+    
+        while($row = $result->fetch_assoc()) {
+            $arr[]= $row;
+        }
+    echo json_encode($arr);
+    
+    } else {
 
- 
-} else {
-  echo "0 results";
-}
-  
-  
-//     if($mysql = $conn->query($sql) === TRUE){
- 
-//     $res = [
-//         'status' => 200,
-//         'message' => 'Emp Created Successfully'
-//     ];
-//     echo json_encode($res);
-
-
-
-//   }else{
-
-//     $res = [
-//         'status' => 201,
-//         'message' => 'Emp not Created'
-//     ];
-//     echo json_encode($res);
-
-
-//   }
+    $arr = [
+        "status" => 201,
+        "message" => "Data not fetched",
+    ];
+    }
+    
   
